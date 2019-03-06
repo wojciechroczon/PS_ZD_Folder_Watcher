@@ -42,7 +42,7 @@ namespace PS_ZD_Windows_Form_
 
      
 
-        private void _watcher_Changed(object sender, FileSystemEventArgs e)
+        public void _watcher_Changed(object sender, FileSystemEventArgs e)
         {
             
             string log ="";
@@ -51,26 +51,26 @@ namespace PS_ZD_Windows_Form_
             {
                 case WatcherChangeTypes.Created:
                     //       MessageBox.Show($"Stworzono w folderze: {textBox_Path.Text}");
-                    log = $"File Created: {text_path.Text}{e.Name}";
+                    log = $"Utworzono plik: {e.FullPath}";
                     break;
                 case WatcherChangeTypes.Deleted:
                     //MessageBox.Show($"Skasowano w folderze: {textBox_Path.Text}");
-                    log = $"File Deleted: {text_path.Text}{e.Name}";
+                    log = $"Skasowano plik: {e.FullPath}";
                     break;
                 case WatcherChangeTypes.Changed:
                     //   MessageBox.Show($"Zmiana w folderze: {textBox_Path.Text}");
-                    log = $"File Changed: {text_path.Text}{e.Name}";
+                    log = $"Zmieniono plik: {e.FullPath}";
                     break;
                 case WatcherChangeTypes.Renamed:
                     //   MessageBox.Show($"Zmieniono nazwę w folderze: {textBox_Path.Text}");
-                    log = $"File Renamed: {text_path.Text}{e.Name}";
+                    log = $"Zmieniono nazwe pliku: {e.FullPath}";
                     break;
                 case WatcherChangeTypes.All:
                     break;
                 default:
                     break;
             }
-
+            
             if (InvokeRequired)     // dodanie wyjatku do watku monitorowania folderu
             {
                 BeginInvoke((Action)(() =>
@@ -80,11 +80,11 @@ namespace PS_ZD_Windows_Form_
                 }));
             }
 
-            EmailSendAsync();  // wyslanie maila po evencie w folderze
+            EmailSendAsync(e);  // wyslanie maila po evencie w folderze
           
         }
 
-        private async void EmailSendAsync()
+        private async void EmailSendAsync(FileSystemEventArgs e)
         {
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
 
@@ -100,16 +100,17 @@ namespace PS_ZD_Windows_Form_
 
            MailMessage message = new MailMessage();
            message.From = new MailAddress("balluffkurscsharp@gmail.comm", "Balluff Kurs Programowania");
-            message.To.Add(new MailAddress("marcin.cukrowski@gmail.com", "Marcin"));
+            message.To.Add(new MailAddress("marcin.cukrowski@gmail.com", "Marcin Cukrowski"));
             message.Subject = "Kurs C# - informacja o zmianach w folderze";
-            message.Body = $"Hej,\r\n nastąpiła zmiana w folderze {text_path.Text} w pliku.\r\n";
+            message.Body = $"Uwaga,\r\n nastąpiła zmiana w folderze {text_path.Text} na pliku {e.Name} .\r\n ";
 
 
             MailStatus.BackColor = Color.Red;  // jakas logika. nie wiem na czym flage oprzec w IF i dodatkowej metodzie
-
+        
             await client.SendMailAsync(message);  //wyslanie maila asynchronicznie 
 
             MailStatus.BackColor = Color.Green; // jakas logika. nie wiem na czym flage oprzec w IF i dodatkowej metodzie
+       
         }
 
       

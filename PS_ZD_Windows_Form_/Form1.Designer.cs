@@ -97,7 +97,7 @@
             // MailStatus
             // 
             this.MailStatus.Enabled = false;
-            this.MailStatus.Location = new System.Drawing.Point(12, 301);
+            this.MailStatus.Location = new System.Drawing.Point(12, 313);
             this.MailStatus.Name = "MailStatus";
             this.MailStatus.Size = new System.Drawing.Size(402, 23);
             this.MailStatus.TabIndex = 6;
