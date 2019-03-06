@@ -36,7 +36,7 @@
             this.text_path = new System.Windows.Forms.TextBox();
             this.folder_choose = new System.Windows.Forms.Button();
             this.Listbox = new System.Windows.Forms.ListBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.MailStatus = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -94,19 +94,21 @@
             this.Listbox.Size = new System.Drawing.Size(402, 199);
             this.Listbox.TabIndex = 5;
             // 
-            // progressBar1
+            // MailStatus
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 303);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(402, 23);
-            this.progressBar1.TabIndex = 6;
+            this.MailStatus.Enabled = false;
+            this.MailStatus.Location = new System.Drawing.Point(12, 301);
+            this.MailStatus.Name = "MailStatus";
+            this.MailStatus.Size = new System.Drawing.Size(402, 23);
+            this.MailStatus.TabIndex = 6;
+            this.MailStatus.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(427, 348);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.MailStatus);
             this.Controls.Add(this.Listbox);
             this.Controls.Add(this.folder_choose);
             this.Controls.Add(this.text_path);
@@ -129,7 +131,7 @@
         private System.Windows.Forms.TextBox text_path;
         private System.Windows.Forms.Button folder_choose;
         private System.Windows.Forms.ListBox Listbox;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button MailStatus;
     }
 }
 

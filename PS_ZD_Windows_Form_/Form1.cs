@@ -25,7 +25,8 @@ namespace PS_ZD_Windows_Form_
             InitializeComponent();
             InitializeWatcher();
             T1.Enabled = true;
-           
+            MailStatus.BackColor = Color.Green;
+
         }
         
         private void InitializeWatcher()
@@ -79,8 +80,8 @@ namespace PS_ZD_Windows_Form_
                 }));
             }
 
-            EmailSendAsync();
-
+            EmailSendAsync();  // wyslanie maila po evencie w folderze
+          
         }
 
         private async void EmailSendAsync()
@@ -101,16 +102,17 @@ namespace PS_ZD_Windows_Form_
            message.From = new MailAddress("balluffkurscsharp@gmail.comm", "Balluff Kurs Programowania");
             message.To.Add(new MailAddress("marcin.cukrowski@gmail.com", "Marcin"));
             message.Subject = "Kurs C# - informacja o zmianach w folderze";
-            message.Body = $"Hej, nastąpiła zmiana w folderze {text_path.Text} w pliku.";
-         
-           await client.SendMailAsync(message);  //wyslanie maila asynchronicznie 
+            message.Body = $"Hej,\r\n nastąpiła zmiana w folderze {text_path.Text} w pliku.\r\n";
 
+
+            MailStatus.BackColor = Color.Red;  // jakas logika. nie wiem na czym flage oprzec w IF i dodatkowej metodzie
+
+            await client.SendMailAsync(message);  //wyslanie maila asynchronicznie 
+
+            MailStatus.BackColor = Color.Green; // jakas logika. nie wiem na czym flage oprzec w IF i dodatkowej metodzie
         }
 
-        private void progressbar()
-        {
-
-        }
+      
 
         private void T1_Tick(object sender, EventArgs e)
         {
