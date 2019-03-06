@@ -35,11 +35,8 @@
             this.Folder_path = new System.Windows.Forms.Label();
             this.text_path = new System.Windows.Forms.TextBox();
             this.folder_choose = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.Listbox = new System.Windows.Forms.ListBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.statusStrip1.SuspendLayout();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // label1
@@ -89,15 +86,6 @@
             this.folder_choose.UseVisualStyleBackColor = true;
             this.folder_choose.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 289);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(259, 86);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Send_Email";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Listbox
             // 
             this.Listbox.FormattingEnabled = true;
@@ -106,29 +94,20 @@
             this.Listbox.Size = new System.Drawing.Size(402, 199);
             this.Listbox.TabIndex = 5;
             // 
-            // statusStrip1
+            // progressBar1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 381);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(427, 22);
-            this.statusStrip1.TabIndex = 6;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.progressBar1.Location = new System.Drawing.Point(12, 303);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(402, 23);
+            this.progressBar1.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 403);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(427, 348);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.Listbox);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.folder_choose);
             this.Controls.Add(this.text_path);
             this.Controls.Add(this.Folder_path);
@@ -136,8 +115,6 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Leave += new System.EventHandler(this.Form1_Leave);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,10 +128,8 @@
         private System.Windows.Forms.Label Folder_path;
         private System.Windows.Forms.TextBox text_path;
         private System.Windows.Forms.Button folder_choose;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox Listbox;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

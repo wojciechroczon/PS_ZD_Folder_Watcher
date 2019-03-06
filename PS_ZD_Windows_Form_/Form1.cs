@@ -25,17 +25,9 @@ namespace PS_ZD_Windows_Form_
             InitializeComponent();
             InitializeWatcher();
             T1.Enabled = true;
-            //EmailSendAsync();
-            //_watcherAsync();
+           
         }
-
-        private async Task<string> _watcherAsync()
-        {
-         string result = text_path.Text;
-
-            return result;
-        }
-
+        
         private void InitializeWatcher()
         {
             _watcher = new FileSystemWatcher();
@@ -47,28 +39,7 @@ namespace PS_ZD_Windows_Form_
             _watcher.EnableRaisingEvents = true;  // event to monitorowania statusu sciezki dostepu
         }
 
-        private async Task EmailSendAsync()
-        {
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-
-            Credentials name = new Credentials();
-            
-            client.Credentials = new NetworkCredential()
-            {
-                UserName = "balluffkurs@gmail.com",
-                Password = "balluff123"
-            };
-
-            client.EnableSsl = true;
-
-            MailMessage message = new MailMessage();
-            message.From = new MailAddress("balluffkurs@gmail.com", "Balluff Kurs Programowania");
-            message.To.Add(new MailAddress("marcin.cukrowski@gmail.com", "Marcin"));
-            message.Subject = "Kurs C# - wysyłanie e-mail";
-            message.Body = "Hello World";
-
-            client.Send(message);
-        }
+     
 
         private void _watcher_Changed(object sender, FileSystemEventArgs e)
         {
@@ -108,8 +79,39 @@ namespace PS_ZD_Windows_Form_
                 }));
             }
 
+            EmailSendAsync();
 
         }
+
+        private async void EmailSendAsync()
+        {
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+
+            Credentials name = new Credentials();
+
+            client.Credentials = new NetworkCredential()
+            {
+                UserName = "balluffkurscsharp@gmail.com",
+                Password = "0okmNJI("
+            };
+
+            client.EnableSsl = true;
+
+           MailMessage message = new MailMessage();
+           message.From = new MailAddress("balluffkurscsharp@gmail.comm", "Balluff Kurs Programowania");
+            message.To.Add(new MailAddress("marcin.cukrowski@gmail.com", "Marcin"));
+            message.Subject = "Kurs C# - informacja o zmianach w folderze";
+            message.Body = $"Hej, nastąpiła zmiana w folderze {text_path.Text} w pliku.";
+         
+           await client.SendMailAsync(message);  //wyslanie maila asynchronicznie 
+
+        }
+
+        private void progressbar()
+        {
+
+        }
+
         private void T1_Tick(object sender, EventArgs e)
         {
             DateTime date = DateTime.Now;
