@@ -25,7 +25,15 @@ namespace PS_ZD_Windows_Form_
             InitializeComponent();
             InitializeWatcher();
             T1.Enabled = true;
+            //EmailSendAsync();
+            //_watcherAsync();
+        }
 
+        private async Task<string> _watcherAsync()
+        {
+         string result = text_path.Text;
+
+            return result;
         }
 
         private void InitializeWatcher()
@@ -35,30 +43,55 @@ namespace PS_ZD_Windows_Form_
             _watcher.Created += _watcher_Changed;
             _watcher.Deleted += _watcher_Changed;
             _watcher.Renamed += _watcher_Changed;
+            _watcher.Path = text_path.Text;
+            _watcher.EnableRaisingEvents = true;  // event to monitorowania statusu sciezki dostepu
+        }
+
+        private async Task EmailSendAsync()
+        {
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+
+            Credentials name = new Credentials();
+            
+            client.Credentials = new NetworkCredential()
+            {
+                UserName = "balluffkurs@gmail.com",
+                Password = "balluff123"
+            };
+
+            client.EnableSsl = true;
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress("balluffkurs@gmail.com", "Balluff Kurs Programowania");
+            message.To.Add(new MailAddress("marcin.cukrowski@gmail.com", "Marcin"));
+            message.Subject = "Kurs C# - wysyłanie e-mail";
+            message.Body = "Hello World";
+
+            client.Send(message);
         }
 
         private void _watcher_Changed(object sender, FileSystemEventArgs e)
         {
-
-            string log = "";
+            
+            string log ="";
 
             switch (e.ChangeType)
             {
                 case WatcherChangeTypes.Created:
                     //       MessageBox.Show($"Stworzono w folderze: {textBox_Path.Text}");
-                    log = $"File Created: {e.Name}";
+                    log = $"File Created: {text_path.Text}{e.Name}";
                     break;
                 case WatcherChangeTypes.Deleted:
                     //MessageBox.Show($"Skasowano w folderze: {textBox_Path.Text}");
-                    log = $"File Deleted: {e.Name}";
+                    log = $"File Deleted: {text_path.Text}{e.Name}";
                     break;
                 case WatcherChangeTypes.Changed:
                     //   MessageBox.Show($"Zmiana w folderze: {textBox_Path.Text}");
-                    log = $"File Changed: {e.Name}";
+                    log = $"File Changed: {text_path.Text}{e.Name}";
                     break;
                 case WatcherChangeTypes.Renamed:
                     //   MessageBox.Show($"Zmieniono nazwę w folderze: {textBox_Path.Text}");
-                    log = $"File Renamed: {e.Name}";
+                    log = $"File Renamed: {text_path.Text}{e.Name}";
                     break;
                 case WatcherChangeTypes.All:
                     break;
@@ -82,6 +115,8 @@ namespace PS_ZD_Windows_Form_
             DateTime date = DateTime.Now;
 
             label1.Text = $"Actual date : {date}";
+
+           
         }
 
         private void button1_Click(object sender, EventArgs e)

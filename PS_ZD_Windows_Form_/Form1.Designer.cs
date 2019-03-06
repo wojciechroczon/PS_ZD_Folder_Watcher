@@ -37,6 +37,9 @@
             this.folder_choose = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.Listbox = new System.Windows.Forms.ListBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -74,6 +77,7 @@
             this.text_path.Name = "text_path";
             this.text_path.Size = new System.Drawing.Size(259, 20);
             this.text_path.TabIndex = 2;
+            this.text_path.Text = "D:\\";
             // 
             // folder_choose
             // 
@@ -102,11 +106,27 @@
             this.Listbox.Size = new System.Drawing.Size(402, 199);
             this.Listbox.TabIndex = 5;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 381);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(427, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(427, 403);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.Listbox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.folder_choose);
@@ -116,6 +136,8 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Leave += new System.EventHandler(this.Form1_Leave);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,6 +153,8 @@
         private System.Windows.Forms.Button folder_choose;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox Listbox;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
     }
 }
 
