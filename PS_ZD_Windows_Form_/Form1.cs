@@ -22,9 +22,11 @@ namespace PS_ZD_Windows_Form_
 
         public Form1()
         {
+     
             InitializeComponent();
             InitializeWatcher();
             T1.Enabled = true;
+            text_path.Text = Properties.Settings.Default.path; 
             MailStatus.BackColor = Color.Green;
 
         }
@@ -133,6 +135,7 @@ namespace PS_ZD_Windows_Form_
             if (result == DialogResult.OK) 
             {
                 text_path.Text = folderBrowserDialog1.SelectedPath;
+                Properties.Settings.Default.path = text_path.Text;
             }
         }
 
